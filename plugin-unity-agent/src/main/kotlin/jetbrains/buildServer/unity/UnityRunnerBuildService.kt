@@ -126,6 +126,12 @@ class UnityRunnerBuildService(private val unityToolProvider: UnityToolProvider) 
             }
         }
 
+        runnerParameters[UnityConstants.PARAM_QUIT_MODE]?.let {
+            if (it.toBoolean()) {
+                arguments.add("-quit")
+            }
+        }
+
         runnerParameters[UnityConstants.PARAM_EXECUTE_METHOD]?.let {
             if (it.isNotEmpty()) {
                 arguments.addAll(listOf("-executeMethod", it.trim()))
@@ -165,7 +171,6 @@ class UnityRunnerBuildService(private val unityToolProvider: UnityToolProvider) 
         val runTests = runnerParameters[UnityConstants.PARAM_RUN_EDITOR_TESTS]?.toBoolean() ?: false
         val testPlatform = runnerParameters[UnityConstants.PARAM_TEST_PLATFORM]
 
-        // For tests run we should not add -quit argument
         val runTestIndex = arguments.indexOfFirst { RUN_TESTS_REGEX.matches(it) }
         if (runTestIndex < 0) {
             if (runTests) {
@@ -176,9 +181,6 @@ class UnityRunnerBuildService(private val unityToolProvider: UnityToolProvider) 
                 } else {
                     arguments.addAll(listOf(ARG_RUN_TESTS, "-testPlatform", testPlatform))
                 }
-            } else {
-                arguments.add("-quit")
-                return
             }
         }
 

@@ -59,6 +59,9 @@ class UnityParametersProvider {
     val silentCrashes: String
         get() = UnityConstants.PARAM_SILENT_CRASHES
 
+    val quitMode: String
+        get() = UnityConstants.PARAM_QUIT_MODE
+
     val lineStatusesFile: String
         get() = UnityConstants.PARAM_LINE_STATUSES_FILE
 

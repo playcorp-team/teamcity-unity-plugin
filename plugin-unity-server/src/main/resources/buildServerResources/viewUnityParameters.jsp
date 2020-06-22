@@ -61,6 +61,12 @@
     </div>
 </c:if>
 
+<c:if test="${propertiesBean.properties[params.quitMode]}">
+    <div class="parameter">
+        Automatically Quit Unity: <strong>ON</strong>
+    </div>
+</c:if>
+
 <c:if test="${propertiesBean.properties[params.runEditorTests]}">
     <div class="parameter">
         Run Editor tests from the project: <strong>ON</strong>
