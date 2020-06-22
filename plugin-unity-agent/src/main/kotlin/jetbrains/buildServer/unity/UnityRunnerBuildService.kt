@@ -185,24 +185,24 @@ class UnityRunnerBuildService(private val unityToolProvider: UnityToolProvider) 
         }
 
         // Check test results argument
-        val index = arguments.indexOfFirst { RUN_TEST_RESULTS_REGEX.matches(it)}
-        unityTestsReportFile = if (index > 0 && index + 1 < arguments.size) {
-            val testsResultPath = arguments[index + 1]
-            File(testsResultPath)
-        } else {
-            File.createTempFile(
-                    "unityTestResults-",
-                    ".xml",
-                    build.buildTempDirectory
-            ).apply {
-                val testResultsArgument = if (testPlatform.isNullOrEmpty()) {
-                    ARG_EDITOR_TESTS_RESULT_FILE
-                } else {
-                    ARG_TEST_RESULTS_FILE
-                }
-                arguments.addAll(listOf(testResultsArgument, this.absolutePath))
-            }
-        }
+//        val index = arguments.indexOfFirst { RUN_TEST_RESULTS_REGEX.matches(it)}
+//        unityTestsReportFile = if (index > 0 && index + 1 < arguments.size) {
+//            val testsResultPath = arguments[index + 1]
+//            File(testsResultPath)
+//        } else {
+//            File.createTempFile(
+//                    "unityTestResults-",
+//                    ".xml",
+//                    build.buildTempDirectory
+//            ).apply {
+//                val testResultsArgument = if (testPlatform.isNullOrEmpty()) {
+//                    ARG_EDITOR_TESTS_RESULT_FILE
+//                } else {
+//                    ARG_TEST_RESULTS_FILE
+//                }
+//                arguments.addAll(listOf(testResultsArgument, this.absolutePath))
+//            }
+//        }
 
         runnerParameters[UnityConstants.PARAM_TEST_CATEGORIES]?.let {
             if (it.isNotEmpty()) {
